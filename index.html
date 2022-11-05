@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Magic Playbook</title>
-    <link rel="icon" type="image/x-icon" href="logos/svg/logo-no-background.svg">
     <script src="main.js" defer></script>
 </head>
 <style>
@@ -369,14 +368,7 @@ _img {vertical-align: middle;}
     <div class="overlay-content">
       <p>Show Object Manager: <label class="switch"><input type="checkbox" id="_SOM_O" checked="true"><span class="slider round"></span></label></p></br>
       <p>Show Object Table: <label class="switch"><input type="checkbox" id="_SOT_O" checked="true"><span class="slider round"></span></label></p></br>
-      <p>Show Video Area: <label class="switch"><input type="checkbox" id="_SVA_O" checked="true"><span class="slider round"></span></label></p></br>
     </div>
-  </div>
-  <div class="flex-container">
-    <button onclick="setModeDot()">Create Dot</button>
-    <button onclick="setModeCircle()">Create Circle</button>
-    <button id="arcButton" onclick="alert('Feature Coming Soon')">Create Arc</button>
-    <button onclick="alert('Feature Coming Soon')">Create File/Column</button>
   </div>
   <div class="tableDiv">
     <table class="skunk" id="labelCordStable">
@@ -415,27 +407,5 @@ _img {vertical-align: middle;}
       </tbody>
   </table>
   </div>
-  <div id="videosArea">
-    <div class="_slideshow-container">
-
-      <div class="_mySlides _fade">
-        <iframe width="100%" height="500em" src="https://www.youtube.com/embed/s6ipmMbtkso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      
-      <div class="_mySlides _fade">
-        <iframe width="100%" height="500em" src="https://www.youtube.com/embed/0ioep8muXPk" title="First Stepoff Alpha Version 1.0.99" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      
-      <a class="_prev" onclick="plusSlides(-1)">❮</a>
-      <a class="_next" onclick="plusSlides(1)">❯</a>
-      
-      </div>
-      <br>
-      
-      <div style="text-align:center">
-        <span class="_dot" onclick="currentSlide(1)"></span> 
-        <span class="_dot" onclick="currentSlide(2)"></span>
-      </div>
-    </div>
 </body>
 </html>
