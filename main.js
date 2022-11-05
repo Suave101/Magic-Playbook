@@ -21,7 +21,7 @@ var mouseX = 0;
 var mouseY = 0;
 var _arr = [1.875, 3.75, 5.625, 7.5, 9.375, 11.25, 13.125, 15.0, 16.875, 18.75, 20.625, 22.5, 24.375, 26.25, 28.125, 30.0, 31.875, 33.75, 35.625, 37.5, 39.375, 41.25, 43.125, 45.0, 46.875, 48.75, 50.625, 52.5, 54.375, 56.25, 58.125, 60.0, 61.875, 63.75, 65.625, 67.5, 69.375, 71.25, 73.125, 75.0, 76.875, 78.75, 80.625, 82.5, 84.375, 86.25, 88.125, 90.0, 91.875, 93.75, 95.625, 97.5, 99.375, 101.25, 103.125, 105.0, 106.875, 108.75, 110.625, 112.5, 114.375, 116.25, 118.125, 120.0, 121.875, 123.75, 125.625, 127.5, 129.375, 131.25, 133.125, 135.0, 136.875, 138.75, 140.625, 142.5, 144.375, 146.25, 148.125, 150.0, 151.875, 153.75, 155.625, 157.5, 159.375, 161.25, 163.125, 165.0, 166.875, 168.75, 170.625, 172.5, 174.375, 176.25, 178.125, 180.0, 181.875, 183.75, 185.625, 187.5, 189.375, 191.25, 193.125, 195.0, 196.875, 198.75, 200.625, 202.5, 204.375, 206.25, 208.125, 210.0, 211.875, 213.75, 215.625, 217.5, 219.375, 221.25, 223.125, 225.0, 226.875, 228.75, 230.625, 232.5, 234.375, 236.25, 238.125, 240.0, 241.875, 243.75, 245.625, 247.5, 249.375, 251.25, 253.125, 255.0, 256.875, 258.75, 260.625, 262.5, 264.375, 266.25, 268.125, 270.0, 271.875, 273.75, 275.625, 277.5, 279.375, 281.25, 283.125, 285.0, 286.875, 288.75, 290.625, 292.5, 294.375, 296.25, 298.125, 300.0, 301.875, 303.75, 305.625, 307.5, 309.375, 311.25, 313.125, 315.0, 316.875, 318.75, 320.625, 322.5, 324.375, 326.25, 328.125, 330.0, 331.875, 333.75, 335.625, 337.5, 339.375, 341.25, 343.125, 345.0, 346.875, 348.75, 350.625, 352.5, 354.375, 356.25, 358.125, 360.0];
 var cRect = c.getBoundingClientRect();
-var modes = {dot: "Marcher ", circle: "Circle ", arc: "Arc ", file: "File/Column "};
+var modes = {dot: "player ", circle: "Circle ", arc: "Arc ", file: "File/Column "};
 // var IMPORTANT_MASTER_FIELD_ELEMENT_AMOUNTS_LIST[currentSet] = {dots: 0, circles: 0, arcs: 0, files: 0};
 var mode = modes.dot;
 var IMPORTANT_MASTER_SET_LIST = {1: [], 2: [], 3: []};
@@ -211,14 +211,14 @@ function newSetMousePosition(e) {
           IMPORTANT_MASTER_SET_LIST[currentSet].push([_mouseX, _mouseY, _amount, mode + _amount, cordX, cordY, _cell4, mode, [radius], [], "_CGcirlceElement_" + _amount]);
         }
       } else if (mode == modes.dot) {
-        marcherElement = document.createElement("div");
-        marcherElement.id = "_CGmarcherElement_" + _amount;
-        marcherElement.className = "_CGmarcherElement";
-        marcherElement.innerHTML = mode + _amount;
-        marcherElement.setAttribute("draggable", 'true');
-        marcherElement.setAttribute('ondragstart', "drag(event)")
-        _marcherManagementDivObject = document.getElementById("marcherManagementDiv");
-        _marcherManagementDivObject.appendChild(marcherElement);
+        playerElement = document.createElement("div");
+        playerElement.id = "_CGplayerElement_" + _amount;
+        playerElement.className = "_CGplayerElement";
+        playerElement.innerHTML = mode + _amount;
+        playerElement.setAttribute("draggable", 'true');
+        playerElement.setAttribute('ondragstart', "drag(event)")
+        _playerManagementDivObject = document.getElementById("playerManagementDiv");
+        _playerManagementDivObject.appendChild(playerElement);
         IMPORTANT_MASTER_SET_LIST[currentSet].push([_mouseX, _mouseY, _amount, mode + _amount, cordX, cordY, _cell4, mode, null, null]);
       }
   } else {
@@ -258,7 +258,7 @@ function drawPointsOnCircle(_item) {
   // [_mouseX, _mouseY, structuredClone(IMPORTANT_MASTER_SET_LIST[currentSet].length + 2), mode + _amount, cordX, cordY, _cell4, mode, null, null]
   _dpoctemp = new Array();
   _temp_circleManagementDivObject = document.getElementById("_CGcirlceElement_" + _item[2]);
-  _temp_circleManagementDivObject_items = _temp_circleManagementDivObject.querySelectorAll(`[class="_CGmarcherElement"]`)
+  _temp_circleManagementDivObject_items = _temp_circleManagementDivObject.querySelectorAll(`[class="_CGplayerElement"]`)
   for (let z = 0; z < _temp_circleManagementDivObject_items.length; z++) {
     _dpoctemp.push(_temp_circleManagementDivObject_items[z].id);
   }
@@ -280,13 +280,13 @@ function drawPointsOnCircle(_item) {
 function manageSets() {
   let setInputElement = document.getElementById("SET_INPUT");
   currentSet = setInputElement.value;
-  let _MMD = document.getElementById("marcherManagementDiv");
+  let _MMD = document.getElementById("playerManagementDiv");
   let _CMD = document.getElementById("circleManagementDiv");
   if (currentSet == _setLastCheck) {
     IMPORTANT_MASTER_HTML_LIST[currentSet] = [structuredClone(_MMD.outerHTML), structuredClone(_CMD.outerHTML)];
   } else {
     if (IMPORTANT_MASTER_HTML_LIST[currentSet] == undefined) {
-      IMPORTANT_MASTER_HTML_LIST[currentSet] = ['<div id="marcherManagementDiv" ondrop="drop(event)" ondragover="allowDrop(event)"></div>', '<div id="circleManagementDiv"></div>'];
+      IMPORTANT_MASTER_HTML_LIST[currentSet] = ['<div id="playerManagementDiv" ondrop="drop(event)" ondragover="allowDrop(event)"></div>', '<div id="circleManagementDiv"></div>'];
     }
     if (IMPORTANT_MASTER_FIELD_ELEMENT_AMOUNTS_LIST[currentSet] == undefined) {
       IMPORTANT_MASTER_FIELD_ELEMENT_AMOUNTS_LIST[currentSet] = {dots: 0, circles: 0, arcs: 0, files: 0};
@@ -297,16 +297,16 @@ function manageSets() {
   _setLastCheck = currentSet;
 }
 function manageOptions() {
-  let marcherManagementDiv = document.getElementById("marcherManagementDiv");
+  let playerManagementDiv = document.getElementById("playerManagementDiv");
   let circleManagementDiv = document.getElementById("circleManagementDiv");
   let fieldManagementLabel = document.getElementById("fieldManagementLabel");
   let labelCordStable = document.getElementById("labelCordStable");
   if (document.getElementById("_SOM_O").checked) {
-    marcherManagementDiv.style.display = "block";
+    playerManagementDiv.style.display = "block";
     circleManagementDiv.style.display = "block";
     fieldManagementLabel.style.display = "block";
   } else {
-    marcherManagementDiv.style.display = "none";
+    playerManagementDiv.style.display = "none";
     circleManagementDiv.style.display = "none";
     fieldManagementLabel.style.display = "none";
   }
@@ -385,11 +385,11 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   _element = document.getElementById(data);
-  if (ev.target.id.startsWith('_CGmarcherElement') == false) {
+  if (ev.target.id.startsWith('_CGplayerElement') == false) {
     ev.target.appendChild(_element);
     for (let i = 0; i < IMPORTANT_MASTER_SET_LIST[currentSet].length; i++) {
       if (IMPORTANT_MASTER_SET_LIST[currentSet][i][3] == _element.innerHTML) {
-        if (ev.target.id.startsWith('marcherManagementDiv')) {
+        if (ev.target.id.startsWith('playerManagementDiv')) {
           IMPORTANT_MASTER_SET_LIST[currentSet][i][10] = true;
         } else {
           IMPORTANT_MASTER_SET_LIST[currentSet][i][10] = false;
